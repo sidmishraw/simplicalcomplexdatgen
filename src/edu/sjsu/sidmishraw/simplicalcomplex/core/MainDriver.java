@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -44,6 +46,8 @@ public class MainDriver {
 	 * indices
 	 */
 	private static List<String>			wordsBuffer	= new ArrayList<>();
+	
+	private static Map<String, Integer>	revWordMap	= new HashMap<>();
 	
 	/**
 	 * wordMap contains the mapping from the number to word
@@ -156,6 +160,9 @@ public class MainDriver {
 			
 			wordMap.put(wordIndex, word);
 			
+			// makes the lookup for word faster
+			revWordMap.put(word, wordIndex);
+			
 			wordIndex++;
 		});
 		
@@ -178,6 +185,7 @@ public class MainDriver {
 		writeToFile(wordMapFilePath, wordMap);
 		writeToFile(docMapFilePath, docMap);
 		
+		// dat file creation logic
 		try (BufferedWriter bufferWriter = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(new File(simplicalComplexIPPath + File.separator + "s_output.dat"))))) {
 			
@@ -199,7 +207,7 @@ public class MainDriver {
 					// storing the wordstream because I need to reuse the string
 					// buffer to build the op file
 					// creating a supplier of streams for reusing it
-					List<String> cleansedWords = cleanseWords(sBuffer.toString(), jsonFile.getName());
+					Set<String> cleansedWords = cleanseWords(sBuffer.toString(), jsonFile.getName());
 					
 					// creating a resusable stream
 					Supplier<Stream<String>> cleansedWordStream = () -> cleansedWords.stream();
@@ -253,14 +261,14 @@ public class MainDriver {
 	 * @param fileName
 	 * @return {@link List}<String>
 	 */
-	public static List<String> cleanseWords(String str, String fileName) {
+	public static Set<String> cleanseWords(String str, String fileName) {
 		
 		Gson gson = new Gson();
 		
 		@SuppressWarnings("unchecked")
 		Map<String, List<String>> mymap = (Map<String, List<String>>) gson.fromJson(str, Map.class);
 		
-		List<String> words = mymap.get(fileName);
+		Set<String> words = new LinkedHashSet<>(mymap.get(fileName));
 		
 		return words;
 	}
