@@ -38,26 +38,26 @@ import com.google.gson.Gson;
 public class MainDriver {
 	
 	// counters to be used inside lambdas
-	private static int					wordIndex	= 0;
-	private static int					docIndex	= 0;
+	private static int									wordIndex		= 0;
+	private static int									docIndex		= 0;
 	
 	/**
 	 * Temporary store for words before getting stored into the dict with proper
 	 * indices
 	 */
-	private static List<String>			wordsBuffer	= new ArrayList<>();
+	private static List<String>					wordsBuffer	= new ArrayList<>();
 	
 	private static Map<String, Integer>	revWordMap	= new HashMap<>();
 	
 	/**
 	 * wordMap contains the mapping from the number to word
 	 */
-	private static Map<Integer, String>	wordMap		= new HashMap<>();
+	private static Map<Integer, String>	wordMap			= new HashMap<>();
 	
 	/**
 	 * docMap is the mapping from doc to index(number)
 	 */
-	private static Map<Integer, String>	docMap		= new HashMap<>();
+	private static Map<Integer, String>	docMap			= new HashMap<>();
 	
 	/**
 	 * Deciding on the data structure to hold the values:

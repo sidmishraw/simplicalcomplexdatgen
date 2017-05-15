@@ -20,7 +20,7 @@ public class Constants {
 	 * path to the directory containing all the standardized jsons
 	 * They have json of format
 	 */
-	public static final String	DEFAULT_FILE_NAME					= "/Users/sidmishraw/Documents/workspace/cs_267_project/output_s_jsons";
+	public static final String	DEFAULT_FILE_NAME									= "output_s_jsons";
 	
 	/**
 	 * Writes the files that are to be used by simplical complex to there
@@ -28,11 +28,11 @@ public class Constants {
 	 * number of columns and a recommended threshold value
 	 * for the files.
 	 */
-	public static final String	DEFAULT_SIMPLICAL_COMPLEX_IP_PATH	= "/Users/sidmishraw/Documents/workspace/cs_267_project/output_s_dats";
+	public static final String	DEFAULT_SIMPLICAL_COMPLEX_IP_PATH	= "output_s_dats";
 	
 	/**
 	 * word map and doc map offline storage locations
 	 */
-	public static final String	DEFAULT_WORD_MAP_PATH				= "/Users/sidmishraw/Documents/workspace/cs_267_project/word_map.json";
-	public static final String	DEFAULT_DOC_MAP_PATH				= "/Users/sidmishraw/Documents/workspace/cs_267_project/doc_map.json";
+	public static final String	DEFAULT_WORD_MAP_PATH							= "word_map.json";
+	public static final String	DEFAULT_DOC_MAP_PATH							= "doc_map.json";
 }
